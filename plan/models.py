@@ -12,13 +12,13 @@ class Timestamp(models.Model):
 
 class Plan(Timestamp):
     user = models.OneToOneField(User)
-    type = models.IntegerField(choices=((1, "Once"), (2, "Custom")))
+    type = models.IntegerField(choices=((1, "Once"), (2, "Repeat")))
 
 
 class PlanDetails(Timestamp):
     plan = models.ForeignKey(Plan)
     end_time = models.TimeField()
-    status = models.IntegerField(choices=((1, "Active"), (2, "Cancelled")))
+    status = models.IntegerField(choices=((1, "Active"), (2, "Cancelled"), (3, "Done")))
     sunday = models.NullBooleanField(default=False)
     monday = models.NullBooleanField(default=False)
     tuesday = models.NullBooleanField(default=False)
