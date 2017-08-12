@@ -4,7 +4,6 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('date', 'day')
-    actions = ['generate_order']
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
@@ -16,10 +15,6 @@ class OrderAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(user__in=[request.user])
-
-    
-    def generate_shipping_partner(self, request, queryset):
-
 
 # Register your models here.
 admin.site.register(Order, OrderAdmin)
