@@ -33,6 +33,9 @@ TEST_RUNNER = 'gettingstarted.heroku_test_runner.HerokuDiscoverRunner'
 # Application definition
 
 INSTALLED_APPS = (
+    'material',
+    'material.frontend',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,3 +145,13 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'lunchhobe',
+        'USER': 'tm2',
+        'PASSWORD': 'aaaa1111',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
