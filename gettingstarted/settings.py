@@ -34,6 +34,7 @@ TEST_RUNNER = 'gettingstarted.heroku_test_runner.HerokuDiscoverRunner'
 
 INSTALLED_APPS = (
     'material',
+    'material.frontend',
     'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
