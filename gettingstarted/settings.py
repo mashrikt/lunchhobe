@@ -42,7 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello'
+    'lunch_plan',
+    'work_week',
+    'order_details'
 )
 
 MIDDLEWARE_CLASSES = (
