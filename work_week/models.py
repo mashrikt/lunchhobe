@@ -2,7 +2,10 @@ from django.db import models
 
 
 # Create your models here.
-class Day(models.Model):
+from reference.models import BaseModel
+
+
+class Day(BaseModel):
     name = models.CharField(max_length=10)
     is_working_day = models.BooleanField(default=True)
 
