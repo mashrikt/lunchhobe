@@ -5,12 +5,12 @@ from .models import DailyPlan, WeeklyPlan
 
 
 class DailyPlanAdmin(admin.ModelAdmin):
-    list_display = ('day', 'date', 'will_have_lunch')
+    list_display = ('date', 'day', 'will_have_lunch')
     icon = '<i class="material-icons">restaurant</i>'
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
-            self.list_display = ('user', 'day', 'date', 'will_have_lunch')
+            self.list_display = ('date', 'day', 'user', 'will_have_lunch')
         return super(DailyPlanAdmin, self).changelist_view(request, extra_context)
 
     def get_queryset(self, request):
@@ -21,12 +21,12 @@ class DailyPlanAdmin(admin.ModelAdmin):
 
 
 class WeeklyPlanAdmin(admin.ModelAdmin):
-    list_display = ('admin_names',)
+    list_display = ('user', 'admin_names',)
     icon = '<i class="material-icons">shopping_cart</i>'
 
     def changelist_view(self, request, extra_context=None):
-        if request.user.is_superuser:
-            self.list_display = ('user', 'admin_names')
+        if not request.user.is_superuser:
+            self.list_display = ('admin_names',)
         return super(WeeklyPlanAdmin, self).changelist_view(request, extra_context)
 
     def get_queryset(self, request):

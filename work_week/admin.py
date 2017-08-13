@@ -54,7 +54,7 @@ class DayAdmin(admin.ModelAdmin):
 
     generate_order.short_description = "Generate today's order in order table"
 
-    # readonly_fields = ('name',)
+    readonly_fields = ('name',)
 
     def has_add_permission(self, request):
         return False

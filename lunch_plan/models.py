@@ -7,12 +7,16 @@ from django.contrib.auth.models import User
 
 class DailyPlan(BaseModel):
     user = models.ForeignKey(User)
-    day = models.ForeignKey(Day)
     date = models.DateField()
     will_have_lunch = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.day}-{self.date}--{self.will_have_lunch}'
+        return f'{self.date}--{self.will_have_lunch}'
+
+    def day(self):
+        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        return days[self.date.weekday()]
+    day.short_description = "Day"
 
 
 class WeeklyPlan(BaseModel):
