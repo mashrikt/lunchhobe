@@ -14,15 +14,22 @@ class Plan(Timestamp):
     user = models.OneToOneField(User)
     type = models.IntegerField(choices=((1, "Once"), (2, "Repeat")))
 
+    def __str__(self):
+        return str(self.user) + " - " + str(self.type)
+
+
+class Days(Timestamp):
+    value = models.CharField(max_length=10)
+
+    def __str__(self):
+        return str(self.value)
+
 
 class PlanDetails(Timestamp):
     plan = models.ForeignKey(Plan)
     end_time = models.TimeField()
+    day = models.ManyToManyField(Days)
     status = models.IntegerField(choices=((1, "Active"), (2, "Cancelled"), (3, "Done")))
-    sunday = models.NullBooleanField(default=False)
-    monday = models.NullBooleanField(default=False)
-    tuesday = models.NullBooleanField(default=False)
-    wednesday = models.NullBooleanField(default=False)
-    thursday = models.NullBooleanField(default=False)
-    friday = models.NullBooleanField(default=False)
-    saturday = models.NullBooleanField(default=False)
+
+    def __str__(self):
+        return str(self.plan.__str__()) + " - " + str(self.status)
