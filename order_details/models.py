@@ -11,6 +11,7 @@ class Order(BaseModel):
     user = models.ManyToManyField(User)
     extra_orders = models.PositiveSmallIntegerField(default=0)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=85)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=85)
     menu = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
