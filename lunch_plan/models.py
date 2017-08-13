@@ -1,10 +1,11 @@
 from django.db import models
 
+from reference.models import BaseModel
 from work_week.models import Day
 from django.contrib.auth.models import User
 
 
-class DailyPlan(models.Model):
+class DailyPlan(BaseModel):
     user = models.ForeignKey(User)
     day = models.ForeignKey(Day)
     date = models.DateField()
@@ -14,7 +15,7 @@ class DailyPlan(models.Model):
         return f'{self.day}-{self.date}--{self.will_have_lunch}'
 
 
-class WeeklyPlan(models.Model):
+class WeeklyPlan(BaseModel):
     user = models.OneToOneField(User)
     office_lunch_days = models.ManyToManyField(Day)
 

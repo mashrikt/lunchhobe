@@ -5,6 +5,7 @@ from .models import Day
 
 class DayAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_working_day')
+    icon = '<i class="material-icons">today</i>'
     # readonly_fields = ('name',)
 
     # def has_add_permission(self, request):

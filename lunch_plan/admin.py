@@ -6,6 +6,7 @@ from .models import DailyPlan, WeeklyPlan
 
 class DailyPlanAdmin(admin.ModelAdmin):
     list_display = ('day', 'date', 'will_have_lunch')
+    icon = '<i class="material-icons">restaurant</i>'
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
@@ -21,6 +22,7 @@ class DailyPlanAdmin(admin.ModelAdmin):
 
 class WeeklyPlanAdmin(admin.ModelAdmin):
     list_display = ('admin_names',)
+    icon = '<i class="material-icons">shopping_basket</i>'
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
