@@ -22,7 +22,7 @@ class DailyPlanAdmin(admin.ModelAdmin):
 
 class WeeklyPlanAdmin(admin.ModelAdmin):
     list_display = ('admin_names',)
-    icon = '<i class="material-icons">shopping_basket</i>'
+    icon = '<i class="material-icons">shopping_cart</i>'
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
