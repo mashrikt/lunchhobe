@@ -4,12 +4,10 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('date', 'day', 'no_of_orders')
-    readonly_fields = ('date', 'day', 'user', 'no_of_orders')
+    readonly_fields = ('date', 'day')
     icon = '<i class="material-icons">receipt</i>'
 
     def changelist_view(self, request, extra_context=None):
-        if request.user.is_superuser:
-            self.readonly_fields = ('date', 'day')
         if not request.user.is_superuser:
             self.list_display = ('date', 'day')
         return super(OrderAdmin, self).changelist_view(request, extra_context)
