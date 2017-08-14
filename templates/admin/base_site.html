@@ -1,6 +1,10 @@
 {% extends "admin/base.html" %}
 {% load staticfiles%}
 
+{% block favicon %}<link href="{% static 'sh_logo.png' %}" rel="shortcut icon">{% endblock %}
+{% block title %}Lunch Hobe{% endblock %}
+
+
 {% block userphoto %}
     <a href="#"><img class="circle" src="{% static 'sh_logo.png' %}"></a>
 {% endblock %}
