@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'lunch_plan',
     'work_week',
-    'order_details'
+    'order_details',
+    'reference',
 )
 
 MIDDLEWARE_CLASSES = (
