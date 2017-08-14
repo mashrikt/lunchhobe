@@ -4,8 +4,10 @@ from reference.models import BaseModel
 from work_week.models import Day
 from django.contrib.auth.models import User
 
+from dirtyfields import DirtyFieldsMixin
 
-class Order(BaseModel):
+
+class Order(BaseModel, DirtyFieldsMixin):
     day = models.ForeignKey(Day)
     date = models.DateField()
     user = models.ManyToManyField(User)

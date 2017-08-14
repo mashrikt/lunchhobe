@@ -4,7 +4,7 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('date', 'day')
-    readonly_fields = ('user', 'extra_orders', 'price', 'date', 'day', 'no_of_orders')
+    readonly_fields = ('price', 'date', 'day', 'no_of_orders')
     icon = '<i class="material-icons">receipt</i>'
 
     def changelist_view(self, request, extra_context=None):
