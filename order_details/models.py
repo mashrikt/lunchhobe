@@ -8,6 +8,8 @@ from dirtyfields import DirtyFieldsMixin
 
 
 class Order(BaseModel, DirtyFieldsMixin):
+    ENABLE_M2M_CHECK = True
+
     day = models.ForeignKey(Day)
     date = models.DateField()
     user = models.ManyToManyField(User)

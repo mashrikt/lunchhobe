@@ -8,13 +8,6 @@ from order_details.models import Order
 def post_save_order(sender, instance, created, **kwargs):
 
     previous_extra_orders = instance.get_dirty_fields().get('extra_orders')
-    previous_user_list = instance.get_dirty_fields().get('user')
-    # print(previous_user_list)
-    current_user_list = Order.objects.values_list('user', flat=True)
-    # print(current_user_list)
-
-    print(previous_extra_orders)
-    print(instance.extra_orders)
 
     if previous_extra_orders is not None:
         # print("Change in extra orders")
