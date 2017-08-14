@@ -8,7 +8,7 @@ class DailyPlanAdmin(admin.ModelAdmin):
     icon = '<i class="material-icons">restaurant</i>'
     exclude = []
     list_display = []
-    
+
     def changelist_view(self, request, extra_context=None):
         self.list_display = []
         if not request.user.is_superuser:
