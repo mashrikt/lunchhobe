@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 from dirtyfields import DirtyFieldsMixin
 
 
+
+from django.db.models.signals import m2m_changed
+
+
 class Order(BaseModel, DirtyFieldsMixin):
     day = models.ForeignKey(Day)
     date = models.DateField()
@@ -22,3 +26,6 @@ class Order(BaseModel, DirtyFieldsMixin):
     def no_of_orders(self):
         return f'{self.user.count()}+{self.extra_orders}'
     no_of_orders.short_description = "No. of Orders"
+
+    def calculate_total(self):
+        Order.objects.filter(id=self.id).update(total=(self.user.count() + self.extra_orders) * self.price)
