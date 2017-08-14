@@ -3,7 +3,7 @@ import datetime
 
 from django.contrib.auth.models import User
 
-from lunch_plan.models import WeeklyPlan
+from lunch_plan.models import WeeklyPlan, DailyPlan
 from order_details.models import Order
 from .models import Day
 
@@ -36,17 +36,24 @@ class DayAdmin(admin.ModelAdmin):
     def generate_order(self, request, queryset):
         # get the current day from the working day table
         current_day = queryset.values_list('name', flat=True).all()[0]
-        # print(current_day)
-        # find users who have subscribed for lunch for today
         total = 0
         order = Order.objects.create(day=Day.objects.get(name=current_day), date=datetime.datetime.today())
-        user_id_list = []
+        user_id_list = set()
         for plan in (WeeklyPlan.objects.values_list('user', flat=True)
                                .filter(office_lunch_days__name__icontains=current_day)):
-            # print(User.objects.get(id=plan))
-            total += order.price
-            user_id_list.append(plan)
+            user_id_list.add(plan)
 
+        today = datetime.datetime.now().date()
+        for plan in (DailyPlan.objects.values_list('user', flat=True).filter(date__exact=today)):
+            user_id_list.add(plan)
+
+        for plan in (DailyPlan.objects.values_list('user', flat=True)
+                              .filter(date__exact=today, will_have_lunch=False)):
+            user_id_list.remove(plan)
+
+        for ids in user_id_list:
+            total += order.price
+        
         order.user = user_id_list
         order.total = total
         order.menu = "Surprise Niggas!"
