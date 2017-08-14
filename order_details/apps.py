@@ -3,4 +3,6 @@ from django.apps import AppConfig
 
 class OrderDetailsConfig(AppConfig):
     name = 'order_details'
-    icon = '<i class="material-icons">receipt</i>'
+
+    def ready(self):
+        from order_details.signals import post_save_order
