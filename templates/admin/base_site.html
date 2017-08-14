@@ -1,7 +1,8 @@
 {% extends "admin/base.html" %}
+{% load staticfiles%}
 
 {% block userphoto %}
-    <a href="#"><img class="circle" src="https://scontent.fdac5-1.fna.fbcdn.net/v/t34.0-12/20813991_10212264130771170_162247932_n.png?oh=b22271cc5d66f6de543c633eeb92858d&oe=5993555B"></a>
+    <a href="#"><img class="circle" src="{% static 'sh_logo.png' %}"></a>
 {% endblock %}
 
 
