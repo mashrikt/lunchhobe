@@ -8,6 +8,7 @@ from order_details.models import Order
 def post_save_order(sender, instance, created, **kwargs):
 
     previous_extra_orders = instance.get_dirty_fields().get('extra_orders')
+    print(instance.user.count())
 
     if previous_extra_orders is not None:
         # print("Change in extra orders")

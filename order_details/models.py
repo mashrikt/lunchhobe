@@ -22,5 +22,7 @@ class Order(BaseModel, DirtyFieldsMixin):
         return f"{self.date}--{self.day}"
 
     def no_of_orders(self):
+        Order.objects.filter(id=self.id).update(total=(self.user.count() * self.price) +
+                                                      (self.extra_orders * self.price))
         return f'{self.user.count()}+{self.extra_orders}'
     no_of_orders.short_description = "No. of Orders"
