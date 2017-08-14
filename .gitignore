@@ -16,7 +16,8 @@ tests/coverage_html/
 tests/.coverage
 build/
 tests/report/
-ShopHobe/settings.py
+python-getting-started/settings.py
+static/
 ssl/*
 docker-compose.production.yml
 docker-compose.development.yml
