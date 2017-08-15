@@ -1,5 +1,6 @@
 from django.db import models
 
+from order_details.config import DateWeekDay
 from reference.models import BaseModel
 from work_week.models import Day
 from django.contrib.auth.models import User
@@ -14,8 +15,7 @@ class DailyPlan(BaseModel):
         return f'{self.date}--{self.will_have_lunch}'
 
     def day(self):
-        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        return days[self.date.weekday()]
+        return f'{DateWeekDay.CHOICES[self.date.weekday()][1]}'
     day.short_description = "Day"
 
 

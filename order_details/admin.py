@@ -3,13 +3,13 @@ from .models import Order
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('date', 'day', 'no_of_orders')
-    readonly_fields = ('day',)
+    list_display = ['date', 'day_of_week', 'no_of_orders']
+    readonly_fields = ('total',)
     icon = '<i class="material-icons">receipt</i>'
 
     def changelist_view(self, request, extra_context=None):
         if not request.user.is_superuser:
-            self.list_display = ('date', 'day')
+            self.list_display = ['date', 'day_of_week']
         return super(OrderAdmin, self).changelist_view(request, extra_context)
 
     def get_queryset(self, request):
@@ -18,6 +18,6 @@ class OrderAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user__in=[request.user])
 
-
+    
 # Register your models here.
 admin.site.register(Order, OrderAdmin)
