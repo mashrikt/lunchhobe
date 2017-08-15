@@ -7,10 +7,6 @@ from django.contrib.auth.models import User
 from dirtyfields import DirtyFieldsMixin
 
 
-
-from django.db.models.signals import m2m_changed
-
-
 class Order(BaseModel, DirtyFieldsMixin):
     day = models.ForeignKey(Day)
     date = models.DateField()
