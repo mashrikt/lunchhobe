@@ -1,6 +1,19 @@
 {% extends "admin/base.html" %}
 {% load staticfiles%}
 
+{% block extrastyle %}
+<style>
+@media only screen and (max-width: 993px) {
+  .content {
+    flex-direction: column;}
+  .left-panel {
+    order: 1;}
+  .right-panel {
+    display: block;
+    order: 2;} }
+</style>
+{% endblock %}
+
 {% block favicon %}<link href="{% static 'sh_logo.png' %}" rel="shortcut icon">{% endblock %}
 {% block title %}Lunch Hobe{% endblock %}
 

@@ -34,7 +34,6 @@ TEST_RUNNER = 'gettingstarted.heroku_test_runner.HerokuDiscoverRunner'
 
 INSTALLED_APPS = (
     'material',
-    'material.frontend',
     'material.admin',
     'admin_view_permission',
     'django.contrib.admin',
@@ -148,4 +147,3 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
