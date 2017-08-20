@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'work_week',
     'order_details',
     'reference',
+    'daterange_filter',
 )
 
 MIDDLEWARE_CLASSES = (
