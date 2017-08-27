@@ -25,8 +25,8 @@ class Order(BaseModel, DirtyFieldsMixin):
     day_of_week.short_description = "Day"
 
     def no_of_orders(self):
-        return f'{self.user.count()}+{self.extra_orders}'
-    no_of_orders.short_description = "No. of Orders"
+        return f'{self.user.count() + self.extra_orders}'
+    no_of_orders.short_description = "Orders"
 
     def calculate_bill(self):
         return (self.user.count() + self.extra_orders) * self.price

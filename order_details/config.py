@@ -8,12 +8,12 @@ class DateWeekDay(object):
     SUNDAY = 6
 
     CHOICES = (
-        (MONDAY, 'Monday'),
-        (TUESDAY, 'Tuesday'),
-        (WEDNESDAY, 'Wednesday'),
-        (THURSDAY, 'Thursday'),
-        (FRIDAY, 'Friday'),
-        (SATURDAY, 'Saturday'),
-        (SUNDAY, 'Sunday'),
+        (MONDAY, 'M'),
+        (TUESDAY, 'T'),
+        (WEDNESDAY, 'W'),
+        (THURSDAY, 'Th'),
+        (FRIDAY, 'F'),
+        (SATURDAY, 'St'),
+        (SUNDAY, 'S'),
     )
 
