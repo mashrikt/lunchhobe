@@ -19,7 +19,7 @@ def create_order(modeladmin, request, queryset):
         modeladmin.message_user(request, f"There is already an order for {date.strftime('%B %d')}, {current_day}")
     else:
         total = 0
-        order = Order.objects.create(day=Day.objects.get(name=current_day), date=date)
+        order = Order.objects.create(date=date)
         user_id_set = set()
         for user in (WeeklyPlan.objects.values_list('user', flat=True)
                              .filter(office_lunch_days__name__icontains=current_day)):
@@ -78,9 +78,9 @@ class GenerateOrderActionForm(ActionForm):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['date', 'day_of_week', 'no_of_orders', 'total']
+    list_display = ['date', 'day_of_week', 'no_of_orders', 'calculate_bill']
+    ordering = ('-date',)
     # list_filter = [['date', MonthListFilter], 'user']
-    readonly_fields = ('total',)
     icon = '<i class="material-icons">receipt</i>'
     action_form = GenerateOrderActionForm
     actions = [create_order, view_order]
@@ -104,6 +104,12 @@ class OrderAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(user__in=[request.user])
+
+    # def get_actions(self, request):
+    #     actions = super(OrderAdmin, self).get_actions(request)
+    #     if 'delete_selected' in actions:
+    #         del actions['delete_selected']
+    #     return actions
 
 # Register your models here.
 admin.site.register(Order, OrderAdmin)
