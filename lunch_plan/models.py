@@ -27,5 +27,8 @@ class WeeklyPlan(BaseModel):
         return f'{self.user}'
 
     def admin_names(self):
-        return ', '.join([a.name for a in self.office_lunch_days.all()])
+        days = ', '.join([a.name for a in self.office_lunch_days.all()])
+        if days == '':
+            days = "None"
+        return days
     admin_names.short_description = "Office Lunch Days"
